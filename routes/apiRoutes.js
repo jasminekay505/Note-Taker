@@ -1,21 +1,26 @@
 //Dependencies
 const fs = require('fs');
-let notes = JSON.parse(fs.readFileSync('./db/db.json'));
+let db = JSON.parse(fs.readFileSync('./db/db.json'));
+let id = 1;
 
 //Routing
 module.exports = (app) => {
     //GET Request
     app.get('/api/notes', (req, res) => {
-        res.json(notes)
+        res.json(db)
     });
     //POST Request
     app.post('/api/notes', (req,res) => { 
-        let newNote = req.body;
-        notes.push(newNote);
-        fs.writeFile('./db/db.json', stringData, (err, data) => { 
-            if (err) throw err;
+        let newNote = { 
+            id: id++,
+            title: req.body.title,
+            test: req.body.text
+        };
+        db.push(newNote);
+        fs.writeFile('./db/db.json', JSON.stringify(db), (err, data) => { 
+            if(err) throw err;
         });
-        res.send('The new note has been added');
+        res.send('Your new note was added!');
     })
     //DELETE Request
 }
