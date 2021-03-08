@@ -14,7 +14,7 @@ module.exports = (app) => {
         let newNote = { 
             id: id++,
             title: req.body.title,
-            test: req.body.text
+            text: req.body.text
         };
         db.push(newNote);
         fs.writeFile('./db/db.json', JSON.stringify(db), (err, data) => { 
