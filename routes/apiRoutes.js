@@ -20,11 +20,11 @@ module.exports = (app) => {
         fs.writeFile('./db/db.json', JSON.stringify(db), (err, data) => { 
             if(err) throw err;
         });
-        res.JSON(true);
+        res.end();
     })
     //DELETE Request
     app.delete('/api/notes/:id', (req, res) => { 
-        db.splice(db.findIdex(element => element.id == req.params.id), 1);
+        db.splice(db.findIndex(element => element.id == req.params.id), 1);
         fs.writeFileSync('./db/db.json', JSON.stringify(db), (err, data) => { 
             if(err) throw err;
         });
