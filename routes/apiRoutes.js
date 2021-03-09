@@ -10,23 +10,23 @@ module.exports = (app) => {
         res.json(db)
     });
     //POST Request
-    app.post('/api/notes', (req,res) => { 
-        let newNote = { 
+    app.post('/api/notes', (req, res) => {
+        let newNote = {
             id: id++,
             title: req.body.title,
             text: req.body.text
         };
         db.push(newNote);
-        fs.writeFile('./db/db.json', JSON.stringify(db), (err, data) => { 
-            if(err) throw err;
+        fs.writeFile('./db/db.json', JSON.stringify(db), (err, data) => {
+            if (err) throw err;
         });
         res.end();
     })
     //DELETE Request
-    app.delete('/api/notes/:id', (req, res) => { 
+    app.delete('/api/notes/:id', (req, res) => {
         db.splice(db.findIndex(element => element.id == req.params.id), 1);
-        fs.writeFileSync('./db/db.json', JSON.stringify(db), (err, data) => { 
-            if(err) throw err;
+        fs.writeFile('./db/db.json', JSON.stringify(db), (err, data) => {
+            if (err) throw err;
         });
         res.end();
     })
