@@ -1,10 +1,10 @@
 //Dependencies
 const express = require('express');
 
-//Express configuration
+//Express Configuration
 const app = express();
 
-//Set up port
+//Set up Port
 const PORT = process.env.PORT || 8080;
 
 //Set up Express app to handle data parsing
